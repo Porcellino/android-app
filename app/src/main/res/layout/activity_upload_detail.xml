@@ -2,7 +2,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="porce.com.porce.activities.UploadActivity">
+                tools:context="porce.com.porce.activities.UploadDetailActivity">
 
     <!-- Fragment追加場所 -->
     <FrameLayout

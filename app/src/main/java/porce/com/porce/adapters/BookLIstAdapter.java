@@ -4,12 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
 import porce.com.porce.R;
+import porce.com.porce.interfaces.OnBookItemSelectedListener;
 
 /**
  * Created by user1 on 15/01/11.
@@ -18,31 +18,38 @@ public class BookLIstAdapter extends RecyclerView.Adapter<BookLIstAdapter.ViewHo
     private static final String TAG = BookLIstAdapter.class.getSimpleName();
 
     private String[] mDataset;
+    private ImageLoader mImageLoader;
+
+    OnBookItemSelectedListener mListener;
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public BookLIstAdapter(String[] myDataset) {
+    public BookLIstAdapter(String[] myDataset, ImageLoader imageLoader) {
         mDataset = myDataset;
+        mImageLoader = imageLoader;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
     public BookLIstAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
-        // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.parts_book_list_item, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-        ...
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        //TODO:値の追加
-//        holder.imageView.setImageUrl(image, );
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        holder.imageView.setImageUrl(mDataset[position], mImageLoader);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mListener != null){
+                    mListener.onItemSelected(v, position, mDataset[position]);
+                }
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -51,7 +58,17 @@ public class BookLIstAdapter extends RecyclerView.Adapter<BookLIstAdapter.ViewHo
         return mDataset.length;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * アイテム選択イベントの設定
+     *
+     * @param listener
+     */
+    public void setOnBookItemSelectedListener(OnBookItemSelectedListener listener) {
+        mListener = listener;
+    }
+
+
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         public NetworkImageView imageView;
         public ViewHolder(View v) {
             super(v);

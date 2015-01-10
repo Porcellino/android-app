@@ -53,7 +53,7 @@ public class MyPageActivity extends Activity {
         findViewById(R.id.floating_action_post).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MyPageActivity.this, "本紹介", Toast.LENGTH_SHORT).show();
+                startActivity(UploadActivity.createIntent(MyPageActivity.this));
             }
         });
         findViewById(R.id.floating_action_find).setOnClickListener(new View.OnClickListener() {

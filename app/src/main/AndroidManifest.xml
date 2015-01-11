@@ -26,7 +26,7 @@
         <activity
             android:name=".activities.UploadDetailActivity"
             android:label="@string/title_activity_upload_detail"
-            android:parentActivityName=".activities.UploadActivity" >>
+            android:parentActivityName=".activities.MyPageActivity" >
         </activity>
     </application>
 

@@ -13,6 +13,13 @@ public class UploadDetailActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//        Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.book_detail);
+//
+//        getWindow().setSharedElementExitTransition(transition);
+//        getWindow().setSharedElementEnterTransition(transition);
+
         setContentView(R.layout.activity_upload_detail);
 
         //upナビゲーション

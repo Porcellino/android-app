@@ -4,8 +4,9 @@ package porce.com.porce.fragments;
 import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class UploadFragment extends Fragment implements OnBookItemSelectedListen
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
@@ -69,12 +70,11 @@ public class UploadFragment extends Fragment implements OnBookItemSelectedListen
 
     @Override
     public void onItemSelected(View v, int position, String url) {
-        String transitionName = getString(R.string.book_cover);
         ActivityOptions options =
                 ActivityOptions.makeSceneTransitionAnimation(getActivity(),
-                        v,   // 遷移がはじまるビュー
-                        transitionName    // 遷移先のビューの transitionName
-                );
+                        new Pair<>(v.findViewById(R.id.image_view), getString(R.string.book_cover)),
+                        new Pair<>(v.findViewById(R.id.title_text_view), getString(R.string.book_title)),
+                        new Pair<>(v.findViewById(R.id.author_text_view), getString(R.string.book_author)));
         startActivity(UploadDetailActivity.createIntent(getActivity()), options.toBundle());
     }
 }

@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
@@ -41,8 +42,11 @@ public class BookLIstAdapter extends RecyclerView.Adapter<BookLIstAdapter.ViewHo
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+        //TODO:適切な値を入れる
         holder.imageView.setImageUrl(mDataset[position], mImageLoader);
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.titleTextView.setText("タイトル");
+        holder.authorTextView.setText("著者");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mListener != null){
@@ -70,9 +74,13 @@ public class BookLIstAdapter extends RecyclerView.Adapter<BookLIstAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public NetworkImageView imageView;
+        public TextView titleTextView;
+        public TextView authorTextView;
         public ViewHolder(View v) {
             super(v);
             imageView = (NetworkImageView)v.findViewById(R.id.image_view);
+            titleTextView = (TextView)v.findViewById(R.id.title_text_view);
+            authorTextView = (TextView)v.findViewById(R.id.author_text_view);
         }
     }
 }

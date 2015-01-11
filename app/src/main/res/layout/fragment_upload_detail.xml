@@ -34,6 +34,7 @@
         android:layout_marginLeft="10dp"
         android:textSize="14sp"
         android:text="タイトル"
+        android:transitionName="@string/book_title"
         />
 
     <TextView
@@ -46,6 +47,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="著者"
+        android:transitionName="@string/book_author"
         />
 
 </RelativeLayout>

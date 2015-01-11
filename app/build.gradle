@@ -20,5 +20,7 @@ android {
 }
 
 dependencies {
+    compile 'com.mcxiaoke.volley:library:1.0.7'
+    compile 'com.getbase:floatingactionbutton:1.5.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="porce.com.porce" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -15,6 +17,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.UploadActivity"
+            android:label="@string/title_activity_upload"
+            android:parentActivityName=".activities.MyPageActivity" >
+        </activity>
+        <activity
+            android:name=".activities.UploadDetailActivity"
+            android:label="@string/title_activity_upload_detail"
+            android:parentActivityName=".activities.MyPageActivity" >
         </activity>
     </application>
 
